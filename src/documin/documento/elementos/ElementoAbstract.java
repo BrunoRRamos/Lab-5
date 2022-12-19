@@ -1,19 +1,21 @@
 package documin.documento.elementos;
 
-public abstract class ElementoAbstract implements Elemento{
-    private String propiedades;
-    private int valor;
+import java.util.HashMap;
 
-    public ElementoAbstract(String propiedades, int valor) {
-        this.propiedades = propiedades;
+public abstract class ElementoAbstract implements Elemento{
+    private String valor;
+    private HashMap<String, String> propiedades;
+
+    public ElementoAbstract(String valor, String propiedades) {
         this.valor = valor;
+        this.propiedades = new HashMap<>();
     }
 
-    public String getPropiedades() {
+    public HashMap<String, String> getPropiedades() {
         return this.propiedades;
     }
 
-    public int getValor() {
+    public String getValor() {
         return this.valor;
     }
 }

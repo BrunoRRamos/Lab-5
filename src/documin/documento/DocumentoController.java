@@ -1,6 +1,7 @@
 package documin.documento;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 public class DocumentoController {
     private HashMap<String, Documento> documentos;
@@ -10,8 +11,8 @@ public class DocumentoController {
     }
 
     public boolean criarDocumento(String titulo, int tamanhoMaximo) {
-        TrataErros.verificaValorInvalido(tamanhoMaximo);
-        if (TrataErros.verificaExistencia(documentos, titulo) && !titulo.isBlank()) {
+        Utilitarios.verificaValorInvalido(tamanhoMaximo);
+        if (Utilitarios.verificaExistencia(documentos, titulo) && !titulo.isBlank()) {
             documentos.put(titulo, new Documento(titulo, tamanhoMaximo));
             return true;
         }
@@ -19,7 +20,7 @@ public class DocumentoController {
     }
 
     public boolean criarDocumento(String titulo) {
-        if (TrataErros.verificaExistencia(documentos, titulo) && !titulo.isBlank()) {
+        if (Utilitarios.verificaExistencia(documentos, titulo) && !titulo.isBlank()) {
             documentos.put(titulo, new Documento(titulo));
             return true;
         }
@@ -27,17 +28,17 @@ public class DocumentoController {
     }
 
     public void removerDocumento(String titulo) {
-        if (!TrataErros.verificaExistencia(documentos,titulo)) {
+        if (!Utilitarios.verificaExistencia(documentos,titulo)) {
            documentos.remove(titulo);
         }
-        throw new IllegalArgumentException("Esse documento não existe !");
+        throw new NoSuchElementException("Esse documento não existe !");
     }
 
     public int contarElementos(String titulo) {
-        if (!TrataErros.verificaExistencia(documentos,titulo)) {
+        if (!Utilitarios.verificaExistencia(documentos,titulo)) {
             return documentos.get(titulo).getElementosCadastrados();
         }
-        throw new IllegalArgumentException("Esse documento não existe !");
+        throw new NoSuchElementException("Esse documento não existe !");
     }
 
     public String[] exibirDocumento(String titulo) {

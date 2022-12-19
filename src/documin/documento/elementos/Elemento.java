@@ -1,6 +1,13 @@
 package documin.documento.elementos;
 
+import java.util.HashMap;
+
 public interface Elemento {
-    public String getPropiedades();
-    public int getValor();
+    public HashMap<String, String> getPropiedades();
+
+    public String getValor();
+
+    public String representacaoCompleta();
+
+    public String representacaoResumida();
 }

@@ -1,10 +1,9 @@
 package documin.documento;
 
-import documin.documento.Documento;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TrataErros {
+public class Utilitarios {
     public static boolean verificaExistencia(HashMap<String, Documento> documentos, String key) {
         return !documentos.containsKey(key);
     }
@@ -15,4 +14,7 @@ public class TrataErros {
         }
     }
 
+    public static void mudaPosicao(ArrayList lista, int posicaoInicial, int posicaoAlvo) {
+        lista.set(posicaoInicial, lista.set(posicaoAlvo, lista.get(posicaoInicial)));
+    }
 }
