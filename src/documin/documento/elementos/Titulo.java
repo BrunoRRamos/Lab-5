@@ -5,10 +5,11 @@ public class Titulo extends ElementoAbstract {
     private boolean linkavel;
     private int prioridade;
 
-    public Titulo(int prioridade, String valor, String propiedades, boolean linkavel) {
+    public Titulo(int prioridade, String valor, String propiedades, int nivel, boolean linkavel) {
         super(valor, propiedades);
         this.linkavel = linkavel;
         this.prioridade = prioridade;
+        this.getPropriedades().put("nivel", nivel);
     }
 
     @Override

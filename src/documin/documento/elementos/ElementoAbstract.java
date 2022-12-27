@@ -4,15 +4,17 @@ import java.util.HashMap;
 
 public abstract class ElementoAbstract implements Elemento{
     private String valor;
-    private HashMap<String, String> propiedades;
+    protected HashMap<String, Object> propriedades;
+    private int prioridade;
 
-    public ElementoAbstract(String valor, String propiedades) {
+    public ElementoAbstract(String valor, String propriedades, int prioridade) {
         this.valor = valor;
-        this.propiedades = new HashMap<>();
+        this.propriedades = new HashMap<>();
+        this.prioridade = prioridade;
     }
 
-    public HashMap<String, String> getPropiedades() {
-        return this.propiedades;
+    public HashMap<String, Object> getPropriedades() {
+        return this.propriedades;
     }
 
     public String getValor() {

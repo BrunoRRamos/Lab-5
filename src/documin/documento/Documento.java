@@ -1,7 +1,6 @@
 package documin.documento;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Documento {
@@ -46,5 +45,11 @@ public class Documento {
             Utilitarios.mudaPosicao(elementos, posicao, posicao + 1);
         }
     }
+
+    public void adicionaElemento(Object item) {
+        elementos.add(item);
+        elementosCadastrados += 1;
+    }
+
 
 }
