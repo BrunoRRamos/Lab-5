@@ -1,5 +1,6 @@
 package documin.documento;
 
+import documin.documento.elementos.Elemento;
 import documin.documento.elementos.Lista;
 import documin.documento.elementos.Texto;
 import documin.documento.elementos.Titulo;
@@ -67,5 +68,28 @@ public class DocumentoController {
     public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
         return ;
     }
+
+    public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+        Elemento elemento = (Elemento) documentos.get(tituloDoc).getElemento(elementoPosicao);
+        return elemento.representacaoCompleta();
+    }
+    public String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicao) {
+        Elemento elemento = (Elemento) documentos.get(tituloDoc).getElemento(elementoPosicao);
+        return elemento.representacaoResumida();
+    }
+
+    public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
+        return documentos.get(tituloDoc).removeElemento(elementoPosicao);
+    }
+
+    public void moverParaCima(String tituloDoc, int elementoPosicao) {
+        documentos.get(tituloDoc).moveElementoParaCima(elementoPosicao);
+    }
+
+    public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
+        documentos.get(tituloDoc).moveElementoParaBaixo(elementoPosicao);
+    }
+
+
 
 }

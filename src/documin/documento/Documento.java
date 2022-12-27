@@ -51,5 +51,17 @@ public class Documento {
         elementosCadastrados += 1;
     }
 
+    public Object getElemento(int index) {
+       return this.elementos.get(index);
+    }
+
+    public boolean removeElemento(int index) {
+        try {
+            elementos.remove(index);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
 }

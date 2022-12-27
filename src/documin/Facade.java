@@ -46,5 +46,25 @@ public class Facade {
         return ;
     }
 
+    public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+        return documentoController.pegarRepresentacaoCompleta(tituloDoc, elementoPosicao);
+    }
+
+    public String pegarrepresentacaoResumida(String tituloDoc, int elementoPosicao) {
+        return documentoController.pegarRepresentacaoResumida(tituloDoc, elementoPosicao);
+    }
+
+    public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
+        return documentoController.apagarElemento(tituloDoc, elementoPosicao);
+    }
+
+    public void moverParaCima(String tituloDoc, int elementoPosicao) {
+        documentoController.moverParaCima(tituloDoc, elementoPosicao);
+    }
+
+    public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
+        documentoController.moverParaBaixo(tituloDoc, elementoPosicao);
+    }
+
 }
 
