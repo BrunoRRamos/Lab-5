@@ -1,5 +1,6 @@
 package documin.documento.elementos;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class ElementoAbstract implements Elemento{
@@ -20,4 +21,10 @@ public abstract class ElementoAbstract implements Elemento{
     public String getValor() {
         return this.valor;
     }
+
+    @Override
+    public int getPrioridade() {
+        return this.prioridade;
+    }
+
 }

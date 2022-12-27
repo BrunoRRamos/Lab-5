@@ -1,12 +1,10 @@
 package documin.documento;
 
-import documin.documento.elementos.Elemento;
-import documin.documento.elementos.Lista;
-import documin.documento.elementos.Texto;
-import documin.documento.elementos.Titulo;
-
+import documin.documento.elementos.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
+import static java.lang.Math.ceil;
 
 public class DocumentoController {
     private HashMap<String, Documento> documentos;
@@ -90,6 +88,25 @@ public class DocumentoController {
         documentos.get(tituloDoc).moveElementoParaBaixo(elementoPosicao);
     }
 
+    public int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
+        if (documentos.get(tituloDoc).getAtalhoAtivo()) {
+            throw new IllegalStateException("Já possui Atalho");
+        }
 
+        documentos.get(tituloDoc).adicionaElemento(new AtalhoDocumento(calculaMediadePrioridade(documentos.get(tituloDocReferenciado)), tituloDocReferenciado, documentos.get(tituloDocReferenciado).getElementosList()));
+        documentos.get(tituloDoc).setTrueAtalhoAtivo();
+        documentos.get(tituloDocReferenciado).setTrueAtalhoAtivo();
+        return documentos.get(tituloDocReferenciado).getElementosCadastrados() - 1;
+    }
+
+    private int calculaMediadePrioridade(Documento taget) {
+        ArrayList elementosDoc = taget.getElementosList();
+        int somatorioPrioridades = 0;
+        for (int i = 0; i < elementosDoc.size(); i++) {
+            Elemento atual = (Elemento) elementosDoc.get(i);
+            somatorioPrioridades += atual.getPrioridade();
+        }
+        return (int) ceil(somatorioPrioridades / elementosDoc.size());
+    }
 
 }

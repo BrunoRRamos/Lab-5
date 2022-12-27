@@ -8,12 +8,14 @@ public class Documento {
     private int tamanhoMaximo;
     private int elementosCadastrados;
     private ArrayList<Object> elementos;
+    private boolean atalhoAtivo;
 
     public Documento(String titulo, int tamanho) {
         this.titulo = titulo;
         this.tamanhoMaximo = tamanho;
         this.elementosCadastrados = 0;
         this.elementos = new ArrayList<>();
+        this.atalhoAtivo = false;
     }
 
     public Documento(String titulo) {
@@ -62,6 +64,18 @@ public class Documento {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public ArrayList getElementosList() {
+        return this.elementos;
+    }
+
+    public boolean getAtalhoAtivo() {
+        return this.atalhoAtivo;
+    }
+
+    public void setTrueAtalhoAtivo() {
+        this.atalhoAtivo = true;
     }
 
 }

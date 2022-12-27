@@ -66,5 +66,9 @@ public class Facade {
         documentoController.moverParaBaixo(tituloDoc, elementoPosicao);
     }
 
+    public int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
+        return documentoController.criarAtalho(tituloDoc, tituloDocReferenciado);
+    }
+
 }
 

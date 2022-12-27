@@ -10,4 +10,6 @@ public interface Elemento {
     public String representacaoCompleta();
 
     public String representacaoResumida();
+
+    public int getPrioridade();
 }
