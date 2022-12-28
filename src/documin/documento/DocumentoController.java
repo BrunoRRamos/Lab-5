@@ -8,9 +8,11 @@ import static java.lang.Math.ceil;
 
 public class DocumentoController {
     private HashMap<String, Documento> documentos;
+    private ArrayList visoes;
 
     public DocumentoController() {
         this.documentos = new HashMap<>();
+        this.visoes = new ArrayList();
     }
 
     public boolean criarDocumento(String titulo, int tamanhoMaximo) {
@@ -109,4 +111,26 @@ public class DocumentoController {
         return (int) ceil(somatorioPrioridades / elementosDoc.size());
     }
 
+    public int criarVisaoCompleta(String tituloDoc) {
+        ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
+        visoes.add(elementos.stream().map(ElementoAbstract::representacaoCompleta).toArray(String[]::new));
+        return visoes.size() - 1;
+    }
+
+    public int criarVisaoResumida(String tituloDoc) {
+        ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
+        visoes.add(elementos.stream().map(ElementoAbstract::representacaoResumida).toArray(String[]::new));
+        return visoes.size() - 1;
+    }
+
+    public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+        ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
+        visoes.add(elementos.stream().filter(element -> element.getPrioridade() >= prioridade).map(ElementoAbstract::representacaoResumida).toArray(String[]::new)
+        return visoes.size() - 1;
+    }
+
+    public int criarVisaoTitulo(String tituloDoc) {
+        ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
+        visoes.add(elementos.stream().filter(elementos -> elementos.));
+    }
 }
