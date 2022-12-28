@@ -125,12 +125,17 @@ public class DocumentoController {
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().filter(element -> element.getPrioridade() >= prioridade).map(ElementoAbstract::representacaoResumida).toArray(String[]::new)
+        visoes.add(elementos.stream().filter((element) -> element.getPrioridade() >= prioridade).map(ElementoAbstract::representacaoResumida).toArray(String[]::new));
         return visoes.size() - 1;
     }
 
     public int criarVisaoTitulo(String tituloDoc) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().filter(elementos -> elementos.));
+        visoes.add(elementos.stream().filter(elemento -> elemento instanceof Titulo));
+        return visoes.size() - 1;
+    }
+
+    public String[] exibirVisao(int index) {
+        return (String[]) visoes.get(index);
     }
 }

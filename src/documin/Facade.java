@@ -71,23 +71,23 @@ public class Facade {
     }
 
     public int criarVisaoCompleta(String tituloDoc) {
-
+        return documentoController.criarVisaoCompleta(tituloDoc);
     }
 
     public int criarVisaoResumida(String tituloDoc) {
-
+        return documentoController.criarVisaoResumida(tituloDoc);
     }
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
-
+        return documentoController.criarVisaoPrioritaria(tituloDoc, prioridade);
     }
 
     public int criarVisaoTitulo(String tituloDoc) {
-
+        return documentoController.criarVisaoTitulo(tituloDoc);
     }
 
     public String[] exibirVisao(int visaoId) {
-
+        return documentoController.exibirVisao(visaoId);
     }
 
 }
