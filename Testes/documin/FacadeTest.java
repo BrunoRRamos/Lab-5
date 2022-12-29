@@ -66,6 +66,11 @@ class FacadeTest {
 
     @Test
     void exibirDocumento() {
+        assertArrayEquals(new String[]{"Brinks RS"}, facade.exibirDocumento("Teste"));
+        exception = assertThrows(NoSuchElementException.class, () -> {
+           facade.exibirDocumento("EsseDocNãoExiste");
+        });
+        assertEquals("Esse documento não existe !", exception.getMessage());
     }
 
     @Test
