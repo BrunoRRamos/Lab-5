@@ -21,16 +21,16 @@ class FacadeTest {
 
     @Test
     void criarDocumento() {
-        assertEquals(true, facade.criarDocumento("Como fazer bolo"));
-        assertEquals(false, facade.criarDocumento("Como fazer bolo"));
-        assertEquals(false, facade.criarDocumento(""));
+        assertTrue(facade.criarDocumento("Como fazer bolo"));
+        assertFalse(facade.criarDocumento("Como fazer bolo"));
+        assertFalse(facade.criarDocumento(""));
     }
 
     @Test
     void testCriarDocumentoComTamanho() {
-        assertEquals(true, facade.criarDocumento("Como fazer cerveja", 5));
-        assertEquals(false, facade.criarDocumento("Como fazer cerveja", 5));
-        assertEquals(false, facade.criarDocumento("", 1));
+        assertTrue(facade.criarDocumento("Como fazer cerveja", 5));
+        assertFalse(facade.criarDocumento("Como fazer cerveja", 5));
+        assertFalse(facade.criarDocumento("", 1));
     }
 
     @Test
