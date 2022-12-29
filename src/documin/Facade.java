@@ -34,8 +34,8 @@ public class Facade {
         return documentoController.criarTexto(tituloDoc, valor, prioridade);
     }
 
-    public int  Titulo(int prioridade, String valor, String propiedades, int nivel, boolean linkavel) {
-        return documentoController.criarTitulo(propiedades, valor, prioridade, nivel, linkavel);
+    public int criaTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+        return documentoController.criarTitulo(tituloDoc, valor, prioridade, nivel, linkavel);
     }
 
     public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {

@@ -6,7 +6,7 @@ public class Titulo extends ElementoAbstract {
     private int prioridade;
 
     public Titulo(int prioridade, String valor, String propiedades, int nivel, boolean linkavel) {
-        super(valor, propiedades);
+        super(valor, propiedades, prioridade);
         this.linkavel = linkavel;
         this.prioridade = prioridade;
         this.getPropriedades().put("nivel", nivel);

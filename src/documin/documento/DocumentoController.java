@@ -33,10 +33,11 @@ public class DocumentoController {
     }
 
     public void removerDocumento(String titulo) {
-        if (!Utilitarios.verificaExistencia(documentos,titulo)) {
+        if (!Utilitarios.verificaExistencia(documentos, titulo)) {
            documentos.remove(titulo);
+        } else {
+            throw new NoSuchElementException("Esse documento não existe !");
         }
-        throw new NoSuchElementException("Esse documento não existe !");
     }
 
     public int contarElementos(String titulo) {
@@ -47,11 +48,14 @@ public class DocumentoController {
     }
 
     public String[] exibirDocumento(String titulo) {
-        ArrayList<ElementoAbstract> elementos = documentos.get(titulo).getElementosList();
-        String[] documento = elementos.stream()
-                .map(ElementoAbstract::representacaoCompleta)
-                .toArray(String[]::new);
-        return documento;
+        if (!Utilitarios.verificaExistencia(documentos, titulo)) {
+            ArrayList<ElementoAbstract> elementos = documentos.get(titulo).getElementosList();
+            String[] documento = elementos.stream()
+                    .map(ElementoAbstract::representacaoCompleta)
+                    .toArray(String[]::new);
+            return documento;
+        }
+        throw new NoSuchElementException("Esse documento não existe !");
     }
 
     public int criarTexto(String tituloDoc, String valor, int prioridade) {

@@ -14,22 +14,19 @@ public class Documento {
         this.titulo = titulo;
         this.tamanhoMaximo = tamanho;
         this.elementosCadastrados = 0;
-        this.elementos = new ArrayList<>();
+        this.elementos = new ArrayList<Object>();
         this.atalhoAtivo = false;
     }
 
     public Documento(String titulo) {
         this.titulo = titulo;
         this.tamanhoMaximo = 0;
+        this.elementos = new ArrayList<Object>();
         this.elementosCadastrados = 0;
     }
 
     public int getElementosCadastrados() {
         return this.elementosCadastrados;
-    }
-
-    public String[] returnaDocumento() {
-        return null;
     }
 
     public void excluiElemento(int posicao) {
