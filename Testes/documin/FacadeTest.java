@@ -75,10 +75,14 @@ class FacadeTest {
 
     @Test
     void criarTexto() {
+        assertEquals(0, facade.criarTexto("Teste2", "Testando...", 1));
+        assertArrayEquals(new String[]{"Testando..."}, facade.exibirDocumento("Teste2"));
     }
 
     @Test
-    void titulo() {
+    void criaTitulo() {
+        assertEquals(0, facade.criaTitulo("Teste2", "Mais um Teste", 1, 1, false));
+        assertArrayEquals(new String[]{"1. Mais um Teste"}, facade.exibirDocumento("Teste2"));
     }
 
     @Test
