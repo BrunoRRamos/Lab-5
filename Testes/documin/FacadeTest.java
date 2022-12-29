@@ -267,13 +267,46 @@ class FacadeTest {
 
     @Test
     void criarVisaoPrioritaria() {
+        assertEquals(0, facade.criarVisaoPrioritaria("Teste", 1));
+
+        exception = assertThrows(NoSuchElementException.class, () -> {
+            facade.criarVisaoPrioritaria("Bolo de batata", 1);
+        });
+        assertEquals("Esse documento não existe", exception.getMessage());
     }
 
     @Test
     void criarVisaoTitulo() {
+        assertEquals(0, facade.criarVisaoTitulo("Teste"));
+
+        exception = assertThrows(NoSuchElementException.class, () -> {
+            facade.criarVisaoTitulo("Bolo de batata");
+        });
+        assertEquals("Esse documento não existe", exception.getMessage());
     }
 
     @Test
     void exibirVisao() {
+        facade.criaTitulo("Teste2", "Mais um Teste", 1, 1, false);
+        facade.criarTexto("Teste2", "Testando...", 1);
+        assertEquals(0, facade.criarVisaoCompleta("Teste2"));
+        assertEquals(1, facade.criarVisaoResumida("Teste2"));
+        assertEquals(2, facade.criarVisaoPrioritaria("Teste2", 1));
+        assertEquals(3, facade.criarVisaoTitulo("Teste2"));
+
+        assertArrayEquals(new String[]{"1. Mais um Teste", "Testando..."}, facade.exibirVisao(0));
+        assertArrayEquals(new String[]{"1. Mais um Teste", "Testando..."}, facade.exibirVisao(1));
+        assertArrayEquals(new String[]{"1. Mais um Teste", "Testando..."}, facade.exibirVisao(2));
+        assertArrayEquals(new String[]{"1. Mais um Teste"}, facade.exibirVisao(3));
+
+        exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+           facade.exibirVisao(-1);
+        });
+        assertEquals("Essa visão não existe !", exception.getMessage());
+
+        exception = assertThrows(IndexOutOfBoundsException.class, () -> {
+            facade.exibirVisao(4);
+        });
+        assertEquals("Essa visão não existe !", exception.getMessage());
     }
 }

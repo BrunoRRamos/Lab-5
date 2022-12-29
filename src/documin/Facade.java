@@ -87,7 +87,12 @@ public class Facade {
     }
 
     public String[] exibirVisao(int visaoId) {
-        return documentoController.exibirVisao(visaoId);
+        try {
+            return documentoController.exibirVisao(visaoId);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Essa visão não existe !");
+        }
+
     }
 
 }
