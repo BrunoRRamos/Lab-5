@@ -33,6 +33,7 @@ public class DocumentoController {
     }
 
     public void removerDocumento(String titulo) {
+        verificaDoc(documentos, titulo);
         if (!Utilitarios.verificaExistencia(documentos, titulo)) {
            documentos.remove(titulo);
         } else {
@@ -41,13 +42,12 @@ public class DocumentoController {
     }
 
     public int contarElementos(String titulo) {
-        if (!Utilitarios.verificaExistencia(documentos,titulo)) {
-            return documentos.get(titulo).getElementosCadastrados();
-        }
-        throw new NoSuchElementException("Esse documento não existe !");
+        verificaDoc(documentos, titulo);
+        return documentos.get(titulo).getElementosCadastrados();
     }
 
     public String[] exibirDocumento(String titulo) {
+        verificaDoc(documentos, titulo);
         if (!Utilitarios.verificaExistencia(documentos, titulo)) {
             ArrayList<ElementoAbstract> elementos = documentos.get(titulo).getElementosList();
             String[] documento = elementos.stream()
@@ -59,47 +59,57 @@ public class DocumentoController {
     }
 
     public int criarTexto(String tituloDoc, String valor, int prioridade) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).adicionaElemento(new Texto(valor, null, prioridade));
         return documentos.get(tituloDoc).getElementosCadastrados() - 1;
     }
 
     public int criarTitulo(String tituloDoc, String valor, int prioridade, int nivel, boolean linkavel) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).adicionaElemento(new Titulo(prioridade, valor, null, nivel, linkavel));
         return documentos.get(tituloDoc).getElementosCadastrados() - 1;
     }
 
     public int criarLista(String tituloDoc, String valorLista, int prioridade, String separador, String charLista) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).adicionaElemento(new Lista(valorLista, null, prioridade, separador, charLista));
         return documentos.get(tituloDoc).getElementosCadastrados() - 1;
     }
 
     public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).adicionaElemento(new Termos(valorTermos, null, prioridade, separador, ordem));
         return documentos.get(tituloDoc).getElementosCadastrados() - 1;
     }
 
     public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
+        verificaDoc(documentos, tituloDoc);
         Elemento elemento = (Elemento) documentos.get(tituloDoc).getElemento(elementoPosicao);
         return elemento.representacaoCompleta();
     }
     public String pegarRepresentacaoResumida(String tituloDoc, int elementoPosicao) {
+        verificaDoc(documentos, tituloDoc);
         Elemento elemento = (Elemento) documentos.get(tituloDoc).getElemento(elementoPosicao);
         return elemento.representacaoResumida();
     }
 
     public boolean apagarElemento(String tituloDoc, int elementoPosicao) {
+        verificaDoc(documentos, tituloDoc);
         return documentos.get(tituloDoc).removeElemento(elementoPosicao);
     }
 
     public void moverParaCima(String tituloDoc, int elementoPosicao) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).moveElementoParaCima(elementoPosicao);
     }
 
     public void moverParaBaixo(String tituloDoc, int elementoPosicao) {
+        verificaDoc(documentos, tituloDoc);
         documentos.get(tituloDoc).moveElementoParaBaixo(elementoPosicao);
     }
 
     public int criarAtalho(String tituloDoc, String tituloDocReferenciado) {
+        verificaDoc(documentos, tituloDoc);
         if (documentos.get(tituloDoc).getAtalhoAtivo()) {
             throw new IllegalStateException("Já possui Atalho");
         }
@@ -111,7 +121,7 @@ public class DocumentoController {
     }
 
     private int calculaMediadePrioridade(Documento taget) {
-        ArrayList elementosDoc = taget.getElementosList();
+        ArrayList<Object> elementosDoc = taget.getElementosList();
         int somatorioPrioridades = 0;
         for (int i = 0; i < elementosDoc.size(); i++) {
             Elemento atual = (Elemento) elementosDoc.get(i);
@@ -121,6 +131,7 @@ public class DocumentoController {
     }
 
     public int criarVisaoCompleta(String tituloDoc) {
+        verificaDoc(documentos, tituloDoc);
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
         visoes.add(elementos.stream()
                 .map(ElementoAbstract::representacaoCompleta)
@@ -129,6 +140,7 @@ public class DocumentoController {
     }
 
     public int criarVisaoResumida(String tituloDoc) {
+        verificaDoc(documentos, tituloDoc);
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
         visoes.add(elementos.stream()
                 .map(ElementoAbstract::representacaoResumida)
@@ -137,6 +149,7 @@ public class DocumentoController {
     }
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
+        verificaDoc(documentos, tituloDoc);
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
         visoes.add(elementos.stream()
                 .filter((element) -> element.getPrioridade() >= prioridade)
@@ -146,6 +159,7 @@ public class DocumentoController {
     }
 
     public int criarVisaoTitulo(String tituloDoc) {
+        verificaDoc(documentos, tituloDoc);
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
         visoes.add(elementos.stream()
                 .filter(elemento -> elemento instanceof Titulo)
@@ -156,5 +170,11 @@ public class DocumentoController {
 
     public String[] exibirVisao(int index) {
         return (String[]) visoes.get(index);
+    }
+
+    private void verificaDoc(HashMap<String, Documento> documentos, String tituloDoc) {
+        if (!documentos.containsKey(tituloDoc)) {
+            throw new NoSuchElementException("Esse documento não existe");
+        }
     }
 }

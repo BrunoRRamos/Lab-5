@@ -34,14 +34,18 @@ public class Documento {
     }
 
     public void moveElementoParaCima(int posicao) {
-        if ((posicao - 1) > 0) {
+        if ((posicao - 1) >= 0) {
             Utilitarios.mudaPosicao(this.elementos, posicao, posicao - 1);
+        } else {
+            throw new IllegalArgumentException("Posição Inválida !");
         }
     }
 
     public void moveElementoParaBaixo(int posicao) {
-        if ((posicao + 1) < this.elementos.size() - 1) {
+        if ((posicao + 1) <= this.elementos.size() - 1) {
             Utilitarios.mudaPosicao(this.elementos, posicao, posicao + 1);
+        } else {
+            throw new IndexOutOfBoundsException("Posição Inválida !");
         }
     }
 
