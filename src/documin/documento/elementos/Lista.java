@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Lista extends ElementoAbstract{
     private ArrayList<String> itens;
     private String separador;
-
     private int prioridade;
 
     public Lista(String valor, String propriedades, int prioridade, String separador, String marcacao) {
@@ -22,7 +21,7 @@ public class Lista extends ElementoAbstract{
 
     @Override
     public String representacaoCompleta() {
-        String charMarcacao = (String) this.propriedades.get("charMarcacao");
+        String charMarcacao = (String) this.propriedades.get("marcacao");
         return itens.stream().reduce("", (acc, curr) -> MessageFormat.format("{0}\n{1} {2}", acc, charMarcacao, curr));
     }
 

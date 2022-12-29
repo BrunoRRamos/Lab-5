@@ -87,26 +87,48 @@ class FacadeTest {
 
     @Test
     void criarLista() {
+        assertEquals(0, facade.criarLista("Teste2", "TestandoListas...", 1, "/", "-"));
+        assertArrayEquals(new String[]{"\n- TestandoListas..."}, facade.exibirDocumento("Teste2"));
     }
 
     @Test
     void criarTermos() {
+        assertEquals(0, facade.criarTermos("Teste2", "TestandoTermos...", 1, "-", "ALFABETICA"));
+        assertArrayEquals(new String[]{"Total termos: 1\n- TestandoTermos..."}, facade.exibirDocumento("Teste2"));
     }
 
     @Test
     void pegarRepresentacaoCompleta() {
+        assertEquals("Brinks RS", facade.pegarRepresentacaoCompleta("Teste", 0));
     }
 
     @Test
     void pegarrepresentacaoResumida() {
+        facade.criaTitulo("Teste2", "Mais um Teste", 1, 1, false);
+        assertEquals("1. Mais um Teste", facade.pegarrepresentacaoResumida("Teste2", 0));
     }
 
     @Test
     void apagarElemento() {
+        facade.criaTitulo("Teste2", "Mais um Teste", 1, 1, false);
+        assertTrue(facade.apagarElemento("Teste2", 0));
+        assertFalse(facade.apagarElemento("Teste2", 0));
     }
 
     @Test
     void moverParaCima() {
+        //Index 0
+        assertEquals(0, facade.criaTitulo("Teste2", "Mais um Teste", 1, 1, false));
+        //Index 1
+        assertEquals(1, facade.criarTexto("Teste2", "Testando Ordem", 1));
+
+        //Invertendo Ordem
+        facade.moverParaCima("Teste2", 1);
+        //Verificando troca de ordem
+        assertEquals("Testando Ordem", facade.pegarRepresentacaoCompleta("Teste2", 0));
+        assertEquals("1. Mais um Teste", facade.pegarRepresentacaoCompleta("Teste2", 1));
+
+
     }
 
     @Test

@@ -35,19 +35,19 @@ public class Documento {
 
     public void moveElementoParaCima(int posicao) {
         if ((posicao - 1) > 0) {
-            Utilitarios.mudaPosicao(elementos, posicao, posicao - 1);
+            Utilitarios.mudaPosicao(this.elementos, posicao, posicao - 1);
         }
     }
 
     public void moveElementoParaBaixo(int posicao) {
-        if ((posicao + 1) < elementos.size() - 1) {
-            Utilitarios.mudaPosicao(elementos, posicao, posicao + 1);
+        if ((posicao + 1) < this.elementos.size() - 1) {
+            Utilitarios.mudaPosicao(this.elementos, posicao, posicao + 1);
         }
     }
 
     public void adicionaElemento(Object item) {
-        elementos.add(item);
-        elementosCadastrados += 1;
+        this.elementos.add(item);
+        this.elementosCadastrados += 1;
     }
 
     public Object getElemento(int index) {
@@ -56,7 +56,7 @@ public class Documento {
 
     public boolean removeElemento(int index) {
         try {
-            elementos.remove(index);
+            this.elementos.remove(index);
             return true;
         } catch (Exception e) {
             return false;

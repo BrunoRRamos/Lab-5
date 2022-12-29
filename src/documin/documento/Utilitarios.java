@@ -16,5 +16,6 @@ public class Utilitarios {
 
     public static void mudaPosicao(ArrayList lista, int posicaoInicial, int posicaoAlvo) {
         lista.set(posicaoInicial, lista.set(posicaoAlvo, lista.get(posicaoInicial)));
+        System.out.println("MUDOU EMM");
     }
 }
