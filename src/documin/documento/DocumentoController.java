@@ -47,7 +47,11 @@ public class DocumentoController {
     }
 
     public String[] exibirDocumento(String titulo) {
-        return null;
+        ArrayList<ElementoAbstract> elementos = documentos.get(titulo).getElementosList();
+        String[] documento = elementos.stream()
+                .map(ElementoAbstract::representacaoCompleta)
+                .toArray(String[]::new);
+        return documento;
     }
 
     public int criarTexto(String tituloDoc, String valor, int prioridade) {
@@ -66,7 +70,8 @@ public class DocumentoController {
     }
 
     public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-        return ;
+        documentos.get(tituloDoc).adicionaElemento(new Termos(valorTermos, null, prioridade, separador, ordem));
+        return documentos.get(tituloDoc).getElementosCadastrados() - 1;
     }
 
     public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
@@ -113,25 +118,35 @@ public class DocumentoController {
 
     public int criarVisaoCompleta(String tituloDoc) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().map(ElementoAbstract::representacaoCompleta).toArray(String[]::new));
+        visoes.add(elementos.stream()
+                .map(ElementoAbstract::representacaoCompleta)
+                .toArray(String[]::new));
         return visoes.size() - 1;
     }
 
     public int criarVisaoResumida(String tituloDoc) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().map(ElementoAbstract::representacaoResumida).toArray(String[]::new));
+        visoes.add(elementos.stream()
+                .map(ElementoAbstract::representacaoResumida)
+                .toArray(String[]::new));
         return visoes.size() - 1;
     }
 
     public int criarVisaoPrioritaria(String tituloDoc, int prioridade) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().filter((element) -> element.getPrioridade() >= prioridade).map(ElementoAbstract::representacaoResumida).toArray(String[]::new));
+        visoes.add(elementos.stream()
+                .filter((element) -> element.getPrioridade() >= prioridade)
+                .map(ElementoAbstract::representacaoResumida)
+                .toArray(String[]::new));
         return visoes.size() - 1;
     }
 
     public int criarVisaoTitulo(String tituloDoc) {
         ArrayList<ElementoAbstract> elementos = documentos.get(tituloDoc).getElementosList();
-        visoes.add(elementos.stream().filter(elemento -> elemento instanceof Titulo));
+        visoes.add(elementos.stream()
+                .filter(elemento -> elemento instanceof Titulo)
+                .map(ElementoAbstract::representacaoResumida)
+                .toArray(String[]::new));
         return visoes.size() - 1;
     }
 

@@ -27,7 +27,7 @@ public class Facade {
     }
 
     public String[] exibirDocumento(String titulo){
-        return null;
+        return documentoController.exibirDocumento(titulo);
     }
 
     public int criarTexto(String tituloDoc, String valor, int prioridade) {
@@ -43,7 +43,7 @@ public class Facade {
     }
 
     public int criarTermos(String tituloDoc, String valorTermos, int prioridade, String separador, String ordem) {
-        return ;
+        return documentoController.criarTermos(tituloDoc, valorTermos, prioridade, separador, ordem);
     }
 
     public String pegarRepresentacaoCompleta(String tituloDoc, int elementoPosicao) {
