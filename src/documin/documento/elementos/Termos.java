@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author Bruno Rodrigues Ramos
  * Classe responsável por representar um elemento do tipo Termo
  */
-public class Termos extends ElementoAbstract{
+public class Termos extends ElementoAbstract implements Elemento{
     private ArrayList<String> termosDoc;
 
     /**

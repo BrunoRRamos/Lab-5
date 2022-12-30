@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class FacadeTest {
-
     private Facade facade = new Facade();
     private Throwable exception;
 

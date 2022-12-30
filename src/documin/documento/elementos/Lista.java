@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Bruno Rodrigues Ramos
  * Classe responsável por representar um elemento do tipo Lista
  */
-public class Lista extends ElementoAbstract{
+public class Lista extends ElementoAbstract implements Elemento{
     private ArrayList<String> itens;
     private String separador;
     private int prioridade;
